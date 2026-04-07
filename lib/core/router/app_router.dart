@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/auth/presentation/providers/auth_provider.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -17,22 +18,27 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 final appRouterProvider = Provider<GoRouter>((ref) {
-  // TODO: replace with actual auth state provider
-  const bool isAuthenticated = false;
-  const bool hasSeenOnboarding = false;
-
-  return GoRouter(
+  final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: hasSeenOnboarding ? (isAuthenticated ? '/home' : '/login') : '/onboarding',
+    initialLocation: '/login',
     redirect: (context, state) {
-      final isAuthRoute = state.matchedLocation == '/login' || state.matchedLocation == '/register';
-      final isOnboarding = state.matchedLocation == '/onboarding';
+      final authAsync = ref.read(authStateProvider);
 
-      if (!hasSeenOnboarding && !isOnboarding) return '/onboarding';
+      // While loading auth state, stay put
+      if (authAsync.isLoading) return null;
+
+      final isAuthenticated = ref.read(isAuthenticatedProvider);
+      final loc = state.matchedLocation;
+
+      final isAuthRoute = loc == '/login' || loc == '/register';
+      final isOnboarding = loc == '/onboarding';
+
       if (!isAuthenticated && !isAuthRoute && !isOnboarding) return '/login';
       if (isAuthenticated && isAuthRoute) return '/home';
+
       return null;
     },
+    refreshListenable: _AuthStateListenable(ref),
     routes: [
       GoRoute(
         path: '/onboarding',
@@ -94,11 +100,19 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
     ],
   );
+
+  return router;
 });
+
+/// Notifies GoRouter to re-evaluate redirect when auth state changes.
+class _AuthStateListenable extends ChangeNotifier {
+  _AuthStateListenable(Ref ref) {
+    ref.listen(authStateProvider, (_, __) => notifyListeners());
+  }
+}
 
 class _ScaffoldWithNavBar extends StatelessWidget {
   final Widget child;
-
   const _ScaffoldWithNavBar({required this.child});
 
   @override
@@ -109,10 +123,26 @@ class _ScaffoldWithNavBar extends StatelessWidget {
         selectedIndex: _selectedIndex(context),
         onDestinationSelected: (index) => _onItemTapped(context, index),
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.check_circle_outline), selectedIcon: Icon(Icons.check_circle), label: 'Habits'),
-          NavigationDestination(icon: Icon(Icons.phone_android_outlined), selectedIcon: Icon(Icons.phone_android), label: 'Screen Time'),
-          NavigationDestination(icon: Icon(Icons.timer_outlined), selectedIcon: Icon(Icons.timer), label: 'Focus'),
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.check_circle_outline),
+            selectedIcon: Icon(Icons.check_circle),
+            label: 'Habits',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.phone_android_outlined),
+            selectedIcon: Icon(Icons.phone_android),
+            label: 'Screen Time',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.timer_outlined),
+            selectedIcon: Icon(Icons.timer),
+            label: 'Focus',
+          ),
         ],
       ),
     );
