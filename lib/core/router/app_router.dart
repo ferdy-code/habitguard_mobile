@@ -7,8 +7,9 @@ import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/habits/presentation/screens/habits_screen.dart';
-import '../../features/habits/presentation/screens/habit_create_screen.dart';
+import '../../features/habits/presentation/screens/create_habit_screen.dart';
 import '../../features/habits/presentation/screens/habit_detail_screen.dart';
+import '../../features/habits/domain/entities/habit.dart';
 import '../../features/screen_time/presentation/screens/screen_time_screen.dart';
 import '../../features/focus/presentation/screens/focus_screen.dart';
 import '../../features/ai_coach/presentation/screens/ai_coach_screen.dart';
@@ -67,7 +68,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: 'create',
                 parentNavigatorKey: _rootNavigatorKey,
-                builder: (context, state) => const HabitCreateScreen(),
+                builder: (context, state) => CreateHabitScreen(
+                  editingHabit: state.extra as Habit?,
+                ),
               ),
               GoRoute(
                 path: ':id',

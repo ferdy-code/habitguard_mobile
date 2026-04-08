@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+Color colorFromHex(String hex) {
+  final code = hex.replaceAll('#', '').replaceAll('0x', '');
+  final value = int.parse(code.length == 6 ? 'FF$code' : code, radix: 16);
+  return Color(value);
+}
+
 class AppColors {
   AppColors._();
 
