@@ -15,6 +15,7 @@ import '../../features/screen_time/presentation/screens/app_detail_screen.dart';
 import '../../features/screen_time/presentation/screens/limits_screen.dart';
 import '../../features/screen_time/domain/entities/screen_time_entry.dart';
 import '../../features/focus/presentation/screens/focus_screen.dart';
+import '../../features/focus/presentation/screens/focus_history_screen.dart';
 import '../../features/ai_coach/presentation/screens/ai_coach_screen.dart';
 import '../../features/settings/presentation/screens/settings_screen.dart';
 
@@ -107,6 +108,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/focus',
             builder: (context, state) => const FocusScreen(),
+            routes: [
+              GoRoute(
+                path: 'history',
+                parentNavigatorKey: _rootNavigatorKey,
+                builder: (context, state) => const FocusHistoryScreen(),
+              ),
+            ],
           ),
         ],
       ),

@@ -2318,6 +2318,727 @@ class LocalScreenTimeLimitsCompanion
   }
 }
 
+class $LocalFocusSessionsTable extends LocalFocusSessions
+    with TableInfo<$LocalFocusSessionsTable, LocalFocusSessionData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LocalFocusSessionsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _userIdMeta = const VerificationMeta('userId');
+  @override
+  late final GeneratedColumn<String> userId = GeneratedColumn<String>(
+    'user_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumn<String> type = GeneratedColumn<String>(
+    'type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _focusMinutesMeta = const VerificationMeta(
+    'focusMinutes',
+  );
+  @override
+  late final GeneratedColumn<int> focusMinutes = GeneratedColumn<int>(
+    'focus_minutes',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _breakMinutesMeta = const VerificationMeta(
+    'breakMinutes',
+  );
+  @override
+  late final GeneratedColumn<int> breakMinutes = GeneratedColumn<int>(
+    'break_minutes',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _actualFocusSecondsMeta =
+      const VerificationMeta('actualFocusSeconds');
+  @override
+  late final GeneratedColumn<int> actualFocusSeconds = GeneratedColumn<int>(
+    'actual_focus_seconds',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _blockedAppsMeta = const VerificationMeta(
+    'blockedApps',
+  );
+  @override
+  late final GeneratedColumn<String> blockedApps = GeneratedColumn<String>(
+    'blocked_apps',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _startedAtMeta = const VerificationMeta(
+    'startedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> startedAt = GeneratedColumn<DateTime>(
+    'started_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _endedAtMeta = const VerificationMeta(
+    'endedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> endedAt = GeneratedColumn<DateTime>(
+    'ended_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _isSyncedMeta = const VerificationMeta(
+    'isSynced',
+  );
+  @override
+  late final GeneratedColumn<bool> isSynced = GeneratedColumn<bool>(
+    'is_synced',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_synced" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    userId,
+    type,
+    focusMinutes,
+    breakMinutes,
+    actualFocusSeconds,
+    status,
+    blockedApps,
+    startedAt,
+    endedAt,
+    isSynced,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'local_focus_sessions';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<LocalFocusSessionData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('user_id')) {
+      context.handle(
+        _userIdMeta,
+        userId.isAcceptableOrUnknown(data['user_id']!, _userIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_userIdMeta);
+    }
+    if (data.containsKey('type')) {
+      context.handle(
+        _typeMeta,
+        type.isAcceptableOrUnknown(data['type']!, _typeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_typeMeta);
+    }
+    if (data.containsKey('focus_minutes')) {
+      context.handle(
+        _focusMinutesMeta,
+        focusMinutes.isAcceptableOrUnknown(
+          data['focus_minutes']!,
+          _focusMinutesMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_focusMinutesMeta);
+    }
+    if (data.containsKey('break_minutes')) {
+      context.handle(
+        _breakMinutesMeta,
+        breakMinutes.isAcceptableOrUnknown(
+          data['break_minutes']!,
+          _breakMinutesMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_breakMinutesMeta);
+    }
+    if (data.containsKey('actual_focus_seconds')) {
+      context.handle(
+        _actualFocusSecondsMeta,
+        actualFocusSeconds.isAcceptableOrUnknown(
+          data['actual_focus_seconds']!,
+          _actualFocusSecondsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('status')) {
+      context.handle(
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_statusMeta);
+    }
+    if (data.containsKey('blocked_apps')) {
+      context.handle(
+        _blockedAppsMeta,
+        blockedApps.isAcceptableOrUnknown(
+          data['blocked_apps']!,
+          _blockedAppsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('started_at')) {
+      context.handle(
+        _startedAtMeta,
+        startedAt.isAcceptableOrUnknown(data['started_at']!, _startedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_startedAtMeta);
+    }
+    if (data.containsKey('ended_at')) {
+      context.handle(
+        _endedAtMeta,
+        endedAt.isAcceptableOrUnknown(data['ended_at']!, _endedAtMeta),
+      );
+    }
+    if (data.containsKey('is_synced')) {
+      context.handle(
+        _isSyncedMeta,
+        isSynced.isAcceptableOrUnknown(data['is_synced']!, _isSyncedMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  LocalFocusSessionData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LocalFocusSessionData(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      userId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}user_id'],
+      )!,
+      type: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}type'],
+      )!,
+      focusMinutes: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}focus_minutes'],
+      )!,
+      breakMinutes: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}break_minutes'],
+      )!,
+      actualFocusSeconds: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}actual_focus_seconds'],
+      )!,
+      status: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}status'],
+      )!,
+      blockedApps: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}blocked_apps'],
+      ),
+      startedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}started_at'],
+      )!,
+      endedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}ended_at'],
+      ),
+      isSynced: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_synced'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+    );
+  }
+
+  @override
+  $LocalFocusSessionsTable createAlias(String alias) {
+    return $LocalFocusSessionsTable(attachedDatabase, alias);
+  }
+}
+
+class LocalFocusSessionData extends DataClass
+    implements Insertable<LocalFocusSessionData> {
+  final String id;
+  final String userId;
+  final String type;
+  final int focusMinutes;
+  final int breakMinutes;
+  final int actualFocusSeconds;
+  final String status;
+  final String? blockedApps;
+  final DateTime startedAt;
+  final DateTime? endedAt;
+  final bool isSynced;
+  final DateTime createdAt;
+  const LocalFocusSessionData({
+    required this.id,
+    required this.userId,
+    required this.type,
+    required this.focusMinutes,
+    required this.breakMinutes,
+    required this.actualFocusSeconds,
+    required this.status,
+    this.blockedApps,
+    required this.startedAt,
+    this.endedAt,
+    required this.isSynced,
+    required this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['user_id'] = Variable<String>(userId);
+    map['type'] = Variable<String>(type);
+    map['focus_minutes'] = Variable<int>(focusMinutes);
+    map['break_minutes'] = Variable<int>(breakMinutes);
+    map['actual_focus_seconds'] = Variable<int>(actualFocusSeconds);
+    map['status'] = Variable<String>(status);
+    if (!nullToAbsent || blockedApps != null) {
+      map['blocked_apps'] = Variable<String>(blockedApps);
+    }
+    map['started_at'] = Variable<DateTime>(startedAt);
+    if (!nullToAbsent || endedAt != null) {
+      map['ended_at'] = Variable<DateTime>(endedAt);
+    }
+    map['is_synced'] = Variable<bool>(isSynced);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  LocalFocusSessionsCompanion toCompanion(bool nullToAbsent) {
+    return LocalFocusSessionsCompanion(
+      id: Value(id),
+      userId: Value(userId),
+      type: Value(type),
+      focusMinutes: Value(focusMinutes),
+      breakMinutes: Value(breakMinutes),
+      actualFocusSeconds: Value(actualFocusSeconds),
+      status: Value(status),
+      blockedApps: blockedApps == null && nullToAbsent
+          ? const Value.absent()
+          : Value(blockedApps),
+      startedAt: Value(startedAt),
+      endedAt: endedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(endedAt),
+      isSynced: Value(isSynced),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory LocalFocusSessionData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LocalFocusSessionData(
+      id: serializer.fromJson<String>(json['id']),
+      userId: serializer.fromJson<String>(json['userId']),
+      type: serializer.fromJson<String>(json['type']),
+      focusMinutes: serializer.fromJson<int>(json['focusMinutes']),
+      breakMinutes: serializer.fromJson<int>(json['breakMinutes']),
+      actualFocusSeconds: serializer.fromJson<int>(json['actualFocusSeconds']),
+      status: serializer.fromJson<String>(json['status']),
+      blockedApps: serializer.fromJson<String?>(json['blockedApps']),
+      startedAt: serializer.fromJson<DateTime>(json['startedAt']),
+      endedAt: serializer.fromJson<DateTime?>(json['endedAt']),
+      isSynced: serializer.fromJson<bool>(json['isSynced']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'userId': serializer.toJson<String>(userId),
+      'type': serializer.toJson<String>(type),
+      'focusMinutes': serializer.toJson<int>(focusMinutes),
+      'breakMinutes': serializer.toJson<int>(breakMinutes),
+      'actualFocusSeconds': serializer.toJson<int>(actualFocusSeconds),
+      'status': serializer.toJson<String>(status),
+      'blockedApps': serializer.toJson<String?>(blockedApps),
+      'startedAt': serializer.toJson<DateTime>(startedAt),
+      'endedAt': serializer.toJson<DateTime?>(endedAt),
+      'isSynced': serializer.toJson<bool>(isSynced),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  LocalFocusSessionData copyWith({
+    String? id,
+    String? userId,
+    String? type,
+    int? focusMinutes,
+    int? breakMinutes,
+    int? actualFocusSeconds,
+    String? status,
+    Value<String?> blockedApps = const Value.absent(),
+    DateTime? startedAt,
+    Value<DateTime?> endedAt = const Value.absent(),
+    bool? isSynced,
+    DateTime? createdAt,
+  }) => LocalFocusSessionData(
+    id: id ?? this.id,
+    userId: userId ?? this.userId,
+    type: type ?? this.type,
+    focusMinutes: focusMinutes ?? this.focusMinutes,
+    breakMinutes: breakMinutes ?? this.breakMinutes,
+    actualFocusSeconds: actualFocusSeconds ?? this.actualFocusSeconds,
+    status: status ?? this.status,
+    blockedApps: blockedApps.present ? blockedApps.value : this.blockedApps,
+    startedAt: startedAt ?? this.startedAt,
+    endedAt: endedAt.present ? endedAt.value : this.endedAt,
+    isSynced: isSynced ?? this.isSynced,
+    createdAt: createdAt ?? this.createdAt,
+  );
+  LocalFocusSessionData copyWithCompanion(LocalFocusSessionsCompanion data) {
+    return LocalFocusSessionData(
+      id: data.id.present ? data.id.value : this.id,
+      userId: data.userId.present ? data.userId.value : this.userId,
+      type: data.type.present ? data.type.value : this.type,
+      focusMinutes: data.focusMinutes.present
+          ? data.focusMinutes.value
+          : this.focusMinutes,
+      breakMinutes: data.breakMinutes.present
+          ? data.breakMinutes.value
+          : this.breakMinutes,
+      actualFocusSeconds: data.actualFocusSeconds.present
+          ? data.actualFocusSeconds.value
+          : this.actualFocusSeconds,
+      status: data.status.present ? data.status.value : this.status,
+      blockedApps: data.blockedApps.present
+          ? data.blockedApps.value
+          : this.blockedApps,
+      startedAt: data.startedAt.present ? data.startedAt.value : this.startedAt,
+      endedAt: data.endedAt.present ? data.endedAt.value : this.endedAt,
+      isSynced: data.isSynced.present ? data.isSynced.value : this.isSynced,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalFocusSessionData(')
+          ..write('id: $id, ')
+          ..write('userId: $userId, ')
+          ..write('type: $type, ')
+          ..write('focusMinutes: $focusMinutes, ')
+          ..write('breakMinutes: $breakMinutes, ')
+          ..write('actualFocusSeconds: $actualFocusSeconds, ')
+          ..write('status: $status, ')
+          ..write('blockedApps: $blockedApps, ')
+          ..write('startedAt: $startedAt, ')
+          ..write('endedAt: $endedAt, ')
+          ..write('isSynced: $isSynced, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    userId,
+    type,
+    focusMinutes,
+    breakMinutes,
+    actualFocusSeconds,
+    status,
+    blockedApps,
+    startedAt,
+    endedAt,
+    isSynced,
+    createdAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LocalFocusSessionData &&
+          other.id == this.id &&
+          other.userId == this.userId &&
+          other.type == this.type &&
+          other.focusMinutes == this.focusMinutes &&
+          other.breakMinutes == this.breakMinutes &&
+          other.actualFocusSeconds == this.actualFocusSeconds &&
+          other.status == this.status &&
+          other.blockedApps == this.blockedApps &&
+          other.startedAt == this.startedAt &&
+          other.endedAt == this.endedAt &&
+          other.isSynced == this.isSynced &&
+          other.createdAt == this.createdAt);
+}
+
+class LocalFocusSessionsCompanion
+    extends UpdateCompanion<LocalFocusSessionData> {
+  final Value<String> id;
+  final Value<String> userId;
+  final Value<String> type;
+  final Value<int> focusMinutes;
+  final Value<int> breakMinutes;
+  final Value<int> actualFocusSeconds;
+  final Value<String> status;
+  final Value<String?> blockedApps;
+  final Value<DateTime> startedAt;
+  final Value<DateTime?> endedAt;
+  final Value<bool> isSynced;
+  final Value<DateTime> createdAt;
+  final Value<int> rowid;
+  const LocalFocusSessionsCompanion({
+    this.id = const Value.absent(),
+    this.userId = const Value.absent(),
+    this.type = const Value.absent(),
+    this.focusMinutes = const Value.absent(),
+    this.breakMinutes = const Value.absent(),
+    this.actualFocusSeconds = const Value.absent(),
+    this.status = const Value.absent(),
+    this.blockedApps = const Value.absent(),
+    this.startedAt = const Value.absent(),
+    this.endedAt = const Value.absent(),
+    this.isSynced = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  LocalFocusSessionsCompanion.insert({
+    required String id,
+    required String userId,
+    required String type,
+    required int focusMinutes,
+    required int breakMinutes,
+    this.actualFocusSeconds = const Value.absent(),
+    required String status,
+    this.blockedApps = const Value.absent(),
+    required DateTime startedAt,
+    this.endedAt = const Value.absent(),
+    this.isSynced = const Value.absent(),
+    required DateTime createdAt,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       userId = Value(userId),
+       type = Value(type),
+       focusMinutes = Value(focusMinutes),
+       breakMinutes = Value(breakMinutes),
+       status = Value(status),
+       startedAt = Value(startedAt),
+       createdAt = Value(createdAt);
+  static Insertable<LocalFocusSessionData> custom({
+    Expression<String>? id,
+    Expression<String>? userId,
+    Expression<String>? type,
+    Expression<int>? focusMinutes,
+    Expression<int>? breakMinutes,
+    Expression<int>? actualFocusSeconds,
+    Expression<String>? status,
+    Expression<String>? blockedApps,
+    Expression<DateTime>? startedAt,
+    Expression<DateTime>? endedAt,
+    Expression<bool>? isSynced,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (userId != null) 'user_id': userId,
+      if (type != null) 'type': type,
+      if (focusMinutes != null) 'focus_minutes': focusMinutes,
+      if (breakMinutes != null) 'break_minutes': breakMinutes,
+      if (actualFocusSeconds != null)
+        'actual_focus_seconds': actualFocusSeconds,
+      if (status != null) 'status': status,
+      if (blockedApps != null) 'blocked_apps': blockedApps,
+      if (startedAt != null) 'started_at': startedAt,
+      if (endedAt != null) 'ended_at': endedAt,
+      if (isSynced != null) 'is_synced': isSynced,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  LocalFocusSessionsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? userId,
+    Value<String>? type,
+    Value<int>? focusMinutes,
+    Value<int>? breakMinutes,
+    Value<int>? actualFocusSeconds,
+    Value<String>? status,
+    Value<String?>? blockedApps,
+    Value<DateTime>? startedAt,
+    Value<DateTime?>? endedAt,
+    Value<bool>? isSynced,
+    Value<DateTime>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return LocalFocusSessionsCompanion(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      type: type ?? this.type,
+      focusMinutes: focusMinutes ?? this.focusMinutes,
+      breakMinutes: breakMinutes ?? this.breakMinutes,
+      actualFocusSeconds: actualFocusSeconds ?? this.actualFocusSeconds,
+      status: status ?? this.status,
+      blockedApps: blockedApps ?? this.blockedApps,
+      startedAt: startedAt ?? this.startedAt,
+      endedAt: endedAt ?? this.endedAt,
+      isSynced: isSynced ?? this.isSynced,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (userId.present) {
+      map['user_id'] = Variable<String>(userId.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<String>(type.value);
+    }
+    if (focusMinutes.present) {
+      map['focus_minutes'] = Variable<int>(focusMinutes.value);
+    }
+    if (breakMinutes.present) {
+      map['break_minutes'] = Variable<int>(breakMinutes.value);
+    }
+    if (actualFocusSeconds.present) {
+      map['actual_focus_seconds'] = Variable<int>(actualFocusSeconds.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (blockedApps.present) {
+      map['blocked_apps'] = Variable<String>(blockedApps.value);
+    }
+    if (startedAt.present) {
+      map['started_at'] = Variable<DateTime>(startedAt.value);
+    }
+    if (endedAt.present) {
+      map['ended_at'] = Variable<DateTime>(endedAt.value);
+    }
+    if (isSynced.present) {
+      map['is_synced'] = Variable<bool>(isSynced.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalFocusSessionsCompanion(')
+          ..write('id: $id, ')
+          ..write('userId: $userId, ')
+          ..write('type: $type, ')
+          ..write('focusMinutes: $focusMinutes, ')
+          ..write('breakMinutes: $breakMinutes, ')
+          ..write('actualFocusSeconds: $actualFocusSeconds, ')
+          ..write('status: $status, ')
+          ..write('blockedApps: $blockedApps, ')
+          ..write('startedAt: $startedAt, ')
+          ..write('endedAt: $endedAt, ')
+          ..write('isSynced: $isSynced, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $SyncQueueTable extends SyncQueue
     with TableInfo<$SyncQueueTable, SyncQueueItemData> {
   @override
@@ -2785,10 +3506,15 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   );
   late final $LocalScreenTimeLimitsTable localScreenTimeLimits =
       $LocalScreenTimeLimitsTable(this);
+  late final $LocalFocusSessionsTable localFocusSessions =
+      $LocalFocusSessionsTable(this);
   late final $SyncQueueTable syncQueue = $SyncQueueTable(this);
   late final HabitDao habitDao = HabitDao(this as AppDatabase);
   late final CompletionDao completionDao = CompletionDao(this as AppDatabase);
   late final ScreenTimeDao screenTimeDao = ScreenTimeDao(this as AppDatabase);
+  late final FocusSessionDao focusSessionDao = FocusSessionDao(
+    this as AppDatabase,
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -2798,6 +3524,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     localCompletions,
     localScreenTime,
     localScreenTimeLimits,
+    localFocusSessions,
     syncQueue,
   ];
 }
@@ -3980,6 +4707,360 @@ typedef $$LocalScreenTimeLimitsTableProcessedTableManager =
       LocalScreenTimeLimitData,
       PrefetchHooks Function()
     >;
+typedef $$LocalFocusSessionsTableCreateCompanionBuilder =
+    LocalFocusSessionsCompanion Function({
+      required String id,
+      required String userId,
+      required String type,
+      required int focusMinutes,
+      required int breakMinutes,
+      Value<int> actualFocusSeconds,
+      required String status,
+      Value<String?> blockedApps,
+      required DateTime startedAt,
+      Value<DateTime?> endedAt,
+      Value<bool> isSynced,
+      required DateTime createdAt,
+      Value<int> rowid,
+    });
+typedef $$LocalFocusSessionsTableUpdateCompanionBuilder =
+    LocalFocusSessionsCompanion Function({
+      Value<String> id,
+      Value<String> userId,
+      Value<String> type,
+      Value<int> focusMinutes,
+      Value<int> breakMinutes,
+      Value<int> actualFocusSeconds,
+      Value<String> status,
+      Value<String?> blockedApps,
+      Value<DateTime> startedAt,
+      Value<DateTime?> endedAt,
+      Value<bool> isSynced,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+
+class $$LocalFocusSessionsTableFilterComposer
+    extends Composer<_$AppDatabase, $LocalFocusSessionsTable> {
+  $$LocalFocusSessionsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get userId => $composableBuilder(
+    column: $table.userId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get focusMinutes => $composableBuilder(
+    column: $table.focusMinutes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get breakMinutes => $composableBuilder(
+    column: $table.breakMinutes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get actualFocusSeconds => $composableBuilder(
+    column: $table.actualFocusSeconds,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get blockedApps => $composableBuilder(
+    column: $table.blockedApps,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get startedAt => $composableBuilder(
+    column: $table.startedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get endedAt => $composableBuilder(
+    column: $table.endedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get isSynced => $composableBuilder(
+    column: $table.isSynced,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$LocalFocusSessionsTableOrderingComposer
+    extends Composer<_$AppDatabase, $LocalFocusSessionsTable> {
+  $$LocalFocusSessionsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get userId => $composableBuilder(
+    column: $table.userId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get focusMinutes => $composableBuilder(
+    column: $table.focusMinutes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get breakMinutes => $composableBuilder(
+    column: $table.breakMinutes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get actualFocusSeconds => $composableBuilder(
+    column: $table.actualFocusSeconds,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get blockedApps => $composableBuilder(
+    column: $table.blockedApps,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get startedAt => $composableBuilder(
+    column: $table.startedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get endedAt => $composableBuilder(
+    column: $table.endedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get isSynced => $composableBuilder(
+    column: $table.isSynced,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$LocalFocusSessionsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $LocalFocusSessionsTable> {
+  $$LocalFocusSessionsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get userId =>
+      $composableBuilder(column: $table.userId, builder: (column) => column);
+
+  GeneratedColumn<String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<int> get focusMinutes => $composableBuilder(
+    column: $table.focusMinutes,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get breakMinutes => $composableBuilder(
+    column: $table.breakMinutes,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get actualFocusSeconds => $composableBuilder(
+    column: $table.actualFocusSeconds,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<String> get blockedApps => $composableBuilder(
+    column: $table.blockedApps,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get startedAt =>
+      $composableBuilder(column: $table.startedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get endedAt =>
+      $composableBuilder(column: $table.endedAt, builder: (column) => column);
+
+  GeneratedColumn<bool> get isSynced =>
+      $composableBuilder(column: $table.isSynced, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$LocalFocusSessionsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $LocalFocusSessionsTable,
+          LocalFocusSessionData,
+          $$LocalFocusSessionsTableFilterComposer,
+          $$LocalFocusSessionsTableOrderingComposer,
+          $$LocalFocusSessionsTableAnnotationComposer,
+          $$LocalFocusSessionsTableCreateCompanionBuilder,
+          $$LocalFocusSessionsTableUpdateCompanionBuilder,
+          (
+            LocalFocusSessionData,
+            BaseReferences<
+              _$AppDatabase,
+              $LocalFocusSessionsTable,
+              LocalFocusSessionData
+            >,
+          ),
+          LocalFocusSessionData,
+          PrefetchHooks Function()
+        > {
+  $$LocalFocusSessionsTableTableManager(
+    _$AppDatabase db,
+    $LocalFocusSessionsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$LocalFocusSessionsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$LocalFocusSessionsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$LocalFocusSessionsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> userId = const Value.absent(),
+                Value<String> type = const Value.absent(),
+                Value<int> focusMinutes = const Value.absent(),
+                Value<int> breakMinutes = const Value.absent(),
+                Value<int> actualFocusSeconds = const Value.absent(),
+                Value<String> status = const Value.absent(),
+                Value<String?> blockedApps = const Value.absent(),
+                Value<DateTime> startedAt = const Value.absent(),
+                Value<DateTime?> endedAt = const Value.absent(),
+                Value<bool> isSynced = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalFocusSessionsCompanion(
+                id: id,
+                userId: userId,
+                type: type,
+                focusMinutes: focusMinutes,
+                breakMinutes: breakMinutes,
+                actualFocusSeconds: actualFocusSeconds,
+                status: status,
+                blockedApps: blockedApps,
+                startedAt: startedAt,
+                endedAt: endedAt,
+                isSynced: isSynced,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String userId,
+                required String type,
+                required int focusMinutes,
+                required int breakMinutes,
+                Value<int> actualFocusSeconds = const Value.absent(),
+                required String status,
+                Value<String?> blockedApps = const Value.absent(),
+                required DateTime startedAt,
+                Value<DateTime?> endedAt = const Value.absent(),
+                Value<bool> isSynced = const Value.absent(),
+                required DateTime createdAt,
+                Value<int> rowid = const Value.absent(),
+              }) => LocalFocusSessionsCompanion.insert(
+                id: id,
+                userId: userId,
+                type: type,
+                focusMinutes: focusMinutes,
+                breakMinutes: breakMinutes,
+                actualFocusSeconds: actualFocusSeconds,
+                status: status,
+                blockedApps: blockedApps,
+                startedAt: startedAt,
+                endedAt: endedAt,
+                isSynced: isSynced,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$LocalFocusSessionsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $LocalFocusSessionsTable,
+      LocalFocusSessionData,
+      $$LocalFocusSessionsTableFilterComposer,
+      $$LocalFocusSessionsTableOrderingComposer,
+      $$LocalFocusSessionsTableAnnotationComposer,
+      $$LocalFocusSessionsTableCreateCompanionBuilder,
+      $$LocalFocusSessionsTableUpdateCompanionBuilder,
+      (
+        LocalFocusSessionData,
+        BaseReferences<
+          _$AppDatabase,
+          $LocalFocusSessionsTable,
+          LocalFocusSessionData
+        >,
+      ),
+      LocalFocusSessionData,
+      PrefetchHooks Function()
+    >;
 typedef $$SyncQueueTableCreateCompanionBuilder =
     SyncQueueCompanion Function({
       Value<int> id,
@@ -4228,6 +5309,8 @@ class $AppDatabaseManager {
       $$LocalScreenTimeTableTableManager(_db, _db.localScreenTime);
   $$LocalScreenTimeLimitsTableTableManager get localScreenTimeLimits =>
       $$LocalScreenTimeLimitsTableTableManager(_db, _db.localScreenTimeLimits);
+  $$LocalFocusSessionsTableTableManager get localFocusSessions =>
+      $$LocalFocusSessionsTableTableManager(_db, _db.localFocusSessions);
   $$SyncQueueTableTableManager get syncQueue =>
       $$SyncQueueTableTableManager(_db, _db.syncQueue);
 }

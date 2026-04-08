@@ -3,6 +3,7 @@ import 'app_database.dart';
 import 'daos/habit_dao.dart';
 import 'daos/completion_dao.dart';
 import 'daos/screen_time_dao.dart';
+import 'daos/focus_session_dao.dart';
 
 final databaseProvider = Provider<AppDatabase>((ref) {
   final db = AppDatabase();
@@ -20,4 +21,8 @@ final completionDaoProvider = Provider<CompletionDao>(
 
 final screenTimeDaoProvider = Provider<ScreenTimeDao>(
   (ref) => ref.watch(databaseProvider).screenTimeDao,
+);
+
+final focusSessionDaoProvider = Provider<FocusSessionDao>(
+  (ref) => ref.watch(databaseProvider).focusSessionDao,
 );

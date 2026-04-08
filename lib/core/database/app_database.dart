@@ -6,22 +6,24 @@ import 'package:path_provider/path_provider.dart';
 import 'tables/local_habits.dart';
 import 'tables/local_completions.dart';
 import 'tables/local_screen_time.dart';
+import 'tables/local_focus_sessions.dart';
 import 'tables/sync_queue.dart';
 import 'daos/habit_dao.dart';
 import 'daos/completion_dao.dart';
 import 'daos/screen_time_dao.dart';
+import 'daos/focus_session_dao.dart';
 
 part 'app_database.g.dart';
 
 @DriftDatabase(
-  tables: [LocalHabits, LocalCompletions, LocalScreenTime, LocalScreenTimeLimits, SyncQueue],
-  daos: [HabitDao, CompletionDao, ScreenTimeDao],
+  tables: [LocalHabits, LocalCompletions, LocalScreenTime, LocalScreenTimeLimits, LocalFocusSessions, SyncQueue],
+  daos: [HabitDao, CompletionDao, ScreenTimeDao, FocusSessionDao],
 )
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   static LazyDatabase _openConnection() {
     return LazyDatabase(() async {
