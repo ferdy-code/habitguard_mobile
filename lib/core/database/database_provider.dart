@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app_database.dart';
 import 'daos/habit_dao.dart';
 import 'daos/completion_dao.dart';
+import 'daos/screen_time_dao.dart';
 
 final databaseProvider = Provider<AppDatabase>((ref) {
   final db = AppDatabase();
@@ -15,4 +16,8 @@ final habitDaoProvider = Provider<HabitDao>(
 
 final completionDaoProvider = Provider<CompletionDao>(
   (ref) => ref.watch(databaseProvider).completionDao,
+);
+
+final screenTimeDaoProvider = Provider<ScreenTimeDao>(
+  (ref) => ref.watch(databaseProvider).screenTimeDao,
 );

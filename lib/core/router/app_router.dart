@@ -11,6 +11,9 @@ import '../../features/habits/presentation/screens/create_habit_screen.dart';
 import '../../features/habits/presentation/screens/habit_detail_screen.dart';
 import '../../features/habits/domain/entities/habit.dart';
 import '../../features/screen_time/presentation/screens/screen_time_screen.dart';
+import '../../features/screen_time/presentation/screens/app_detail_screen.dart';
+import '../../features/screen_time/presentation/screens/limits_screen.dart';
+import '../../features/screen_time/domain/entities/screen_time_entry.dart';
 import '../../features/focus/presentation/screens/focus_screen.dart';
 import '../../features/ai_coach/presentation/screens/ai_coach_screen.dart';
 import '../../features/settings/presentation/screens/settings_screen.dart';
@@ -84,6 +87,22 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/screen-time',
             builder: (context, state) => const ScreenTimeScreen(),
+            routes: [
+              GoRoute(
+                path: 'app/:pkg',
+                parentNavigatorKey: _rootNavigatorKey,
+                builder: (context, state) => AppDetailScreen(
+                  packageName: Uri.decodeComponent(
+                      state.pathParameters['pkg']!),
+                  initial: state.extra as ScreenTimeEntry?,
+                ),
+              ),
+              GoRoute(
+                path: 'limits',
+                parentNavigatorKey: _rootNavigatorKey,
+                builder: (context, state) => const LimitsScreen(),
+              ),
+            ],
           ),
           GoRoute(
             path: '/focus',

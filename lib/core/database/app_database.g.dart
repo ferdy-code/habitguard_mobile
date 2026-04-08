@@ -1370,6 +1370,954 @@ class LocalCompletionsCompanion extends UpdateCompanion<LocalCompletionData> {
   }
 }
 
+class $LocalScreenTimeTable extends LocalScreenTime
+    with TableInfo<$LocalScreenTimeTable, LocalScreenTimeData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LocalScreenTimeTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _packageNameMeta = const VerificationMeta(
+    'packageName',
+  );
+  @override
+  late final GeneratedColumn<String> packageName = GeneratedColumn<String>(
+    'package_name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _appNameMeta = const VerificationMeta(
+    'appName',
+  );
+  @override
+  late final GeneratedColumn<String> appName = GeneratedColumn<String>(
+    'app_name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _usageMinutesMeta = const VerificationMeta(
+    'usageMinutes',
+  );
+  @override
+  late final GeneratedColumn<int> usageMinutes = GeneratedColumn<int>(
+    'usage_minutes',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _categoryMeta = const VerificationMeta(
+    'category',
+  );
+  @override
+  late final GeneratedColumn<String> category = GeneratedColumn<String>(
+    'category',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<DateTime> date = GeneratedColumn<DateTime>(
+    'date',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _isSyncedMeta = const VerificationMeta(
+    'isSynced',
+  );
+  @override
+  late final GeneratedColumn<bool> isSynced = GeneratedColumn<bool>(
+    'is_synced',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_synced" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    packageName,
+    appName,
+    usageMinutes,
+    category,
+    date,
+    isSynced,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'local_screen_time';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<LocalScreenTimeData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('package_name')) {
+      context.handle(
+        _packageNameMeta,
+        packageName.isAcceptableOrUnknown(
+          data['package_name']!,
+          _packageNameMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_packageNameMeta);
+    }
+    if (data.containsKey('app_name')) {
+      context.handle(
+        _appNameMeta,
+        appName.isAcceptableOrUnknown(data['app_name']!, _appNameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_appNameMeta);
+    }
+    if (data.containsKey('usage_minutes')) {
+      context.handle(
+        _usageMinutesMeta,
+        usageMinutes.isAcceptableOrUnknown(
+          data['usage_minutes']!,
+          _usageMinutesMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_usageMinutesMeta);
+    }
+    if (data.containsKey('category')) {
+      context.handle(
+        _categoryMeta,
+        category.isAcceptableOrUnknown(data['category']!, _categoryMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_categoryMeta);
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+        _dateMeta,
+        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dateMeta);
+    }
+    if (data.containsKey('is_synced')) {
+      context.handle(
+        _isSyncedMeta,
+        isSynced.isAcceptableOrUnknown(data['is_synced']!, _isSyncedMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  LocalScreenTimeData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LocalScreenTimeData(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      packageName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}package_name'],
+      )!,
+      appName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}app_name'],
+      )!,
+      usageMinutes: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}usage_minutes'],
+      )!,
+      category: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}category'],
+      )!,
+      date: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}date'],
+      )!,
+      isSynced: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_synced'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+    );
+  }
+
+  @override
+  $LocalScreenTimeTable createAlias(String alias) {
+    return $LocalScreenTimeTable(attachedDatabase, alias);
+  }
+}
+
+class LocalScreenTimeData extends DataClass
+    implements Insertable<LocalScreenTimeData> {
+  final int id;
+  final String packageName;
+  final String appName;
+  final int usageMinutes;
+  final String category;
+  final DateTime date;
+  final bool isSynced;
+  final DateTime createdAt;
+  const LocalScreenTimeData({
+    required this.id,
+    required this.packageName,
+    required this.appName,
+    required this.usageMinutes,
+    required this.category,
+    required this.date,
+    required this.isSynced,
+    required this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['package_name'] = Variable<String>(packageName);
+    map['app_name'] = Variable<String>(appName);
+    map['usage_minutes'] = Variable<int>(usageMinutes);
+    map['category'] = Variable<String>(category);
+    map['date'] = Variable<DateTime>(date);
+    map['is_synced'] = Variable<bool>(isSynced);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  LocalScreenTimeCompanion toCompanion(bool nullToAbsent) {
+    return LocalScreenTimeCompanion(
+      id: Value(id),
+      packageName: Value(packageName),
+      appName: Value(appName),
+      usageMinutes: Value(usageMinutes),
+      category: Value(category),
+      date: Value(date),
+      isSynced: Value(isSynced),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory LocalScreenTimeData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LocalScreenTimeData(
+      id: serializer.fromJson<int>(json['id']),
+      packageName: serializer.fromJson<String>(json['packageName']),
+      appName: serializer.fromJson<String>(json['appName']),
+      usageMinutes: serializer.fromJson<int>(json['usageMinutes']),
+      category: serializer.fromJson<String>(json['category']),
+      date: serializer.fromJson<DateTime>(json['date']),
+      isSynced: serializer.fromJson<bool>(json['isSynced']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'packageName': serializer.toJson<String>(packageName),
+      'appName': serializer.toJson<String>(appName),
+      'usageMinutes': serializer.toJson<int>(usageMinutes),
+      'category': serializer.toJson<String>(category),
+      'date': serializer.toJson<DateTime>(date),
+      'isSynced': serializer.toJson<bool>(isSynced),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  LocalScreenTimeData copyWith({
+    int? id,
+    String? packageName,
+    String? appName,
+    int? usageMinutes,
+    String? category,
+    DateTime? date,
+    bool? isSynced,
+    DateTime? createdAt,
+  }) => LocalScreenTimeData(
+    id: id ?? this.id,
+    packageName: packageName ?? this.packageName,
+    appName: appName ?? this.appName,
+    usageMinutes: usageMinutes ?? this.usageMinutes,
+    category: category ?? this.category,
+    date: date ?? this.date,
+    isSynced: isSynced ?? this.isSynced,
+    createdAt: createdAt ?? this.createdAt,
+  );
+  LocalScreenTimeData copyWithCompanion(LocalScreenTimeCompanion data) {
+    return LocalScreenTimeData(
+      id: data.id.present ? data.id.value : this.id,
+      packageName: data.packageName.present
+          ? data.packageName.value
+          : this.packageName,
+      appName: data.appName.present ? data.appName.value : this.appName,
+      usageMinutes: data.usageMinutes.present
+          ? data.usageMinutes.value
+          : this.usageMinutes,
+      category: data.category.present ? data.category.value : this.category,
+      date: data.date.present ? data.date.value : this.date,
+      isSynced: data.isSynced.present ? data.isSynced.value : this.isSynced,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalScreenTimeData(')
+          ..write('id: $id, ')
+          ..write('packageName: $packageName, ')
+          ..write('appName: $appName, ')
+          ..write('usageMinutes: $usageMinutes, ')
+          ..write('category: $category, ')
+          ..write('date: $date, ')
+          ..write('isSynced: $isSynced, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    packageName,
+    appName,
+    usageMinutes,
+    category,
+    date,
+    isSynced,
+    createdAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LocalScreenTimeData &&
+          other.id == this.id &&
+          other.packageName == this.packageName &&
+          other.appName == this.appName &&
+          other.usageMinutes == this.usageMinutes &&
+          other.category == this.category &&
+          other.date == this.date &&
+          other.isSynced == this.isSynced &&
+          other.createdAt == this.createdAt);
+}
+
+class LocalScreenTimeCompanion extends UpdateCompanion<LocalScreenTimeData> {
+  final Value<int> id;
+  final Value<String> packageName;
+  final Value<String> appName;
+  final Value<int> usageMinutes;
+  final Value<String> category;
+  final Value<DateTime> date;
+  final Value<bool> isSynced;
+  final Value<DateTime> createdAt;
+  const LocalScreenTimeCompanion({
+    this.id = const Value.absent(),
+    this.packageName = const Value.absent(),
+    this.appName = const Value.absent(),
+    this.usageMinutes = const Value.absent(),
+    this.category = const Value.absent(),
+    this.date = const Value.absent(),
+    this.isSynced = const Value.absent(),
+    this.createdAt = const Value.absent(),
+  });
+  LocalScreenTimeCompanion.insert({
+    this.id = const Value.absent(),
+    required String packageName,
+    required String appName,
+    required int usageMinutes,
+    required String category,
+    required DateTime date,
+    this.isSynced = const Value.absent(),
+    required DateTime createdAt,
+  }) : packageName = Value(packageName),
+       appName = Value(appName),
+       usageMinutes = Value(usageMinutes),
+       category = Value(category),
+       date = Value(date),
+       createdAt = Value(createdAt);
+  static Insertable<LocalScreenTimeData> custom({
+    Expression<int>? id,
+    Expression<String>? packageName,
+    Expression<String>? appName,
+    Expression<int>? usageMinutes,
+    Expression<String>? category,
+    Expression<DateTime>? date,
+    Expression<bool>? isSynced,
+    Expression<DateTime>? createdAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (packageName != null) 'package_name': packageName,
+      if (appName != null) 'app_name': appName,
+      if (usageMinutes != null) 'usage_minutes': usageMinutes,
+      if (category != null) 'category': category,
+      if (date != null) 'date': date,
+      if (isSynced != null) 'is_synced': isSynced,
+      if (createdAt != null) 'created_at': createdAt,
+    });
+  }
+
+  LocalScreenTimeCompanion copyWith({
+    Value<int>? id,
+    Value<String>? packageName,
+    Value<String>? appName,
+    Value<int>? usageMinutes,
+    Value<String>? category,
+    Value<DateTime>? date,
+    Value<bool>? isSynced,
+    Value<DateTime>? createdAt,
+  }) {
+    return LocalScreenTimeCompanion(
+      id: id ?? this.id,
+      packageName: packageName ?? this.packageName,
+      appName: appName ?? this.appName,
+      usageMinutes: usageMinutes ?? this.usageMinutes,
+      category: category ?? this.category,
+      date: date ?? this.date,
+      isSynced: isSynced ?? this.isSynced,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (packageName.present) {
+      map['package_name'] = Variable<String>(packageName.value);
+    }
+    if (appName.present) {
+      map['app_name'] = Variable<String>(appName.value);
+    }
+    if (usageMinutes.present) {
+      map['usage_minutes'] = Variable<int>(usageMinutes.value);
+    }
+    if (category.present) {
+      map['category'] = Variable<String>(category.value);
+    }
+    if (date.present) {
+      map['date'] = Variable<DateTime>(date.value);
+    }
+    if (isSynced.present) {
+      map['is_synced'] = Variable<bool>(isSynced.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalScreenTimeCompanion(')
+          ..write('id: $id, ')
+          ..write('packageName: $packageName, ')
+          ..write('appName: $appName, ')
+          ..write('usageMinutes: $usageMinutes, ')
+          ..write('category: $category, ')
+          ..write('date: $date, ')
+          ..write('isSynced: $isSynced, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $LocalScreenTimeLimitsTable extends LocalScreenTimeLimits
+    with TableInfo<$LocalScreenTimeLimitsTable, LocalScreenTimeLimitData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LocalScreenTimeLimitsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _packageNameMeta = const VerificationMeta(
+    'packageName',
+  );
+  @override
+  late final GeneratedColumn<String> packageName = GeneratedColumn<String>(
+    'package_name',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _categoryMeta = const VerificationMeta(
+    'category',
+  );
+  @override
+  late final GeneratedColumn<String> category = GeneratedColumn<String>(
+    'category',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _dailyLimitMinutesMeta = const VerificationMeta(
+    'dailyLimitMinutes',
+  );
+  @override
+  late final GeneratedColumn<int> dailyLimitMinutes = GeneratedColumn<int>(
+    'daily_limit_minutes',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _isActiveMeta = const VerificationMeta(
+    'isActive',
+  );
+  @override
+  late final GeneratedColumn<bool> isActive = GeneratedColumn<bool>(
+    'is_active',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_active" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    packageName,
+    category,
+    dailyLimitMinutes,
+    isActive,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'local_screen_time_limits';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<LocalScreenTimeLimitData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('package_name')) {
+      context.handle(
+        _packageNameMeta,
+        packageName.isAcceptableOrUnknown(
+          data['package_name']!,
+          _packageNameMeta,
+        ),
+      );
+    }
+    if (data.containsKey('category')) {
+      context.handle(
+        _categoryMeta,
+        category.isAcceptableOrUnknown(data['category']!, _categoryMeta),
+      );
+    }
+    if (data.containsKey('daily_limit_minutes')) {
+      context.handle(
+        _dailyLimitMinutesMeta,
+        dailyLimitMinutes.isAcceptableOrUnknown(
+          data['daily_limit_minutes']!,
+          _dailyLimitMinutesMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_dailyLimitMinutesMeta);
+    }
+    if (data.containsKey('is_active')) {
+      context.handle(
+        _isActiveMeta,
+        isActive.isAcceptableOrUnknown(data['is_active']!, _isActiveMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  LocalScreenTimeLimitData map(
+    Map<String, dynamic> data, {
+    String? tablePrefix,
+  }) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LocalScreenTimeLimitData(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      packageName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}package_name'],
+      ),
+      category: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}category'],
+      ),
+      dailyLimitMinutes: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}daily_limit_minutes'],
+      )!,
+      isActive: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_active'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+    );
+  }
+
+  @override
+  $LocalScreenTimeLimitsTable createAlias(String alias) {
+    return $LocalScreenTimeLimitsTable(attachedDatabase, alias);
+  }
+}
+
+class LocalScreenTimeLimitData extends DataClass
+    implements Insertable<LocalScreenTimeLimitData> {
+  final String id;
+  final String? packageName;
+  final String? category;
+  final int dailyLimitMinutes;
+  final bool isActive;
+  final DateTime createdAt;
+  const LocalScreenTimeLimitData({
+    required this.id,
+    this.packageName,
+    this.category,
+    required this.dailyLimitMinutes,
+    required this.isActive,
+    required this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    if (!nullToAbsent || packageName != null) {
+      map['package_name'] = Variable<String>(packageName);
+    }
+    if (!nullToAbsent || category != null) {
+      map['category'] = Variable<String>(category);
+    }
+    map['daily_limit_minutes'] = Variable<int>(dailyLimitMinutes);
+    map['is_active'] = Variable<bool>(isActive);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  LocalScreenTimeLimitsCompanion toCompanion(bool nullToAbsent) {
+    return LocalScreenTimeLimitsCompanion(
+      id: Value(id),
+      packageName: packageName == null && nullToAbsent
+          ? const Value.absent()
+          : Value(packageName),
+      category: category == null && nullToAbsent
+          ? const Value.absent()
+          : Value(category),
+      dailyLimitMinutes: Value(dailyLimitMinutes),
+      isActive: Value(isActive),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory LocalScreenTimeLimitData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LocalScreenTimeLimitData(
+      id: serializer.fromJson<String>(json['id']),
+      packageName: serializer.fromJson<String?>(json['packageName']),
+      category: serializer.fromJson<String?>(json['category']),
+      dailyLimitMinutes: serializer.fromJson<int>(json['dailyLimitMinutes']),
+      isActive: serializer.fromJson<bool>(json['isActive']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'packageName': serializer.toJson<String?>(packageName),
+      'category': serializer.toJson<String?>(category),
+      'dailyLimitMinutes': serializer.toJson<int>(dailyLimitMinutes),
+      'isActive': serializer.toJson<bool>(isActive),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  LocalScreenTimeLimitData copyWith({
+    String? id,
+    Value<String?> packageName = const Value.absent(),
+    Value<String?> category = const Value.absent(),
+    int? dailyLimitMinutes,
+    bool? isActive,
+    DateTime? createdAt,
+  }) => LocalScreenTimeLimitData(
+    id: id ?? this.id,
+    packageName: packageName.present ? packageName.value : this.packageName,
+    category: category.present ? category.value : this.category,
+    dailyLimitMinutes: dailyLimitMinutes ?? this.dailyLimitMinutes,
+    isActive: isActive ?? this.isActive,
+    createdAt: createdAt ?? this.createdAt,
+  );
+  LocalScreenTimeLimitData copyWithCompanion(
+    LocalScreenTimeLimitsCompanion data,
+  ) {
+    return LocalScreenTimeLimitData(
+      id: data.id.present ? data.id.value : this.id,
+      packageName: data.packageName.present
+          ? data.packageName.value
+          : this.packageName,
+      category: data.category.present ? data.category.value : this.category,
+      dailyLimitMinutes: data.dailyLimitMinutes.present
+          ? data.dailyLimitMinutes.value
+          : this.dailyLimitMinutes,
+      isActive: data.isActive.present ? data.isActive.value : this.isActive,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalScreenTimeLimitData(')
+          ..write('id: $id, ')
+          ..write('packageName: $packageName, ')
+          ..write('category: $category, ')
+          ..write('dailyLimitMinutes: $dailyLimitMinutes, ')
+          ..write('isActive: $isActive, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    packageName,
+    category,
+    dailyLimitMinutes,
+    isActive,
+    createdAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LocalScreenTimeLimitData &&
+          other.id == this.id &&
+          other.packageName == this.packageName &&
+          other.category == this.category &&
+          other.dailyLimitMinutes == this.dailyLimitMinutes &&
+          other.isActive == this.isActive &&
+          other.createdAt == this.createdAt);
+}
+
+class LocalScreenTimeLimitsCompanion
+    extends UpdateCompanion<LocalScreenTimeLimitData> {
+  final Value<String> id;
+  final Value<String?> packageName;
+  final Value<String?> category;
+  final Value<int> dailyLimitMinutes;
+  final Value<bool> isActive;
+  final Value<DateTime> createdAt;
+  final Value<int> rowid;
+  const LocalScreenTimeLimitsCompanion({
+    this.id = const Value.absent(),
+    this.packageName = const Value.absent(),
+    this.category = const Value.absent(),
+    this.dailyLimitMinutes = const Value.absent(),
+    this.isActive = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  LocalScreenTimeLimitsCompanion.insert({
+    required String id,
+    this.packageName = const Value.absent(),
+    this.category = const Value.absent(),
+    required int dailyLimitMinutes,
+    this.isActive = const Value.absent(),
+    required DateTime createdAt,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       dailyLimitMinutes = Value(dailyLimitMinutes),
+       createdAt = Value(createdAt);
+  static Insertable<LocalScreenTimeLimitData> custom({
+    Expression<String>? id,
+    Expression<String>? packageName,
+    Expression<String>? category,
+    Expression<int>? dailyLimitMinutes,
+    Expression<bool>? isActive,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (packageName != null) 'package_name': packageName,
+      if (category != null) 'category': category,
+      if (dailyLimitMinutes != null) 'daily_limit_minutes': dailyLimitMinutes,
+      if (isActive != null) 'is_active': isActive,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  LocalScreenTimeLimitsCompanion copyWith({
+    Value<String>? id,
+    Value<String?>? packageName,
+    Value<String?>? category,
+    Value<int>? dailyLimitMinutes,
+    Value<bool>? isActive,
+    Value<DateTime>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return LocalScreenTimeLimitsCompanion(
+      id: id ?? this.id,
+      packageName: packageName ?? this.packageName,
+      category: category ?? this.category,
+      dailyLimitMinutes: dailyLimitMinutes ?? this.dailyLimitMinutes,
+      isActive: isActive ?? this.isActive,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (packageName.present) {
+      map['package_name'] = Variable<String>(packageName.value);
+    }
+    if (category.present) {
+      map['category'] = Variable<String>(category.value);
+    }
+    if (dailyLimitMinutes.present) {
+      map['daily_limit_minutes'] = Variable<int>(dailyLimitMinutes.value);
+    }
+    if (isActive.present) {
+      map['is_active'] = Variable<bool>(isActive.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalScreenTimeLimitsCompanion(')
+          ..write('id: $id, ')
+          ..write('packageName: $packageName, ')
+          ..write('category: $category, ')
+          ..write('dailyLimitMinutes: $dailyLimitMinutes, ')
+          ..write('isActive: $isActive, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $SyncQueueTable extends SyncQueue
     with TableInfo<$SyncQueueTable, SyncQueueItemData> {
   @override
@@ -1832,9 +2780,15 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $LocalCompletionsTable localCompletions = $LocalCompletionsTable(
     this,
   );
+  late final $LocalScreenTimeTable localScreenTime = $LocalScreenTimeTable(
+    this,
+  );
+  late final $LocalScreenTimeLimitsTable localScreenTimeLimits =
+      $LocalScreenTimeLimitsTable(this);
   late final $SyncQueueTable syncQueue = $SyncQueueTable(this);
   late final HabitDao habitDao = HabitDao(this as AppDatabase);
   late final CompletionDao completionDao = CompletionDao(this as AppDatabase);
+  late final ScreenTimeDao screenTimeDao = ScreenTimeDao(this as AppDatabase);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -1842,6 +2796,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [
     localHabits,
     localCompletions,
+    localScreenTime,
+    localScreenTimeLimits,
     syncQueue,
   ];
 }
@@ -2517,6 +3473,513 @@ typedef $$LocalCompletionsTableProcessedTableManager =
       LocalCompletionData,
       PrefetchHooks Function()
     >;
+typedef $$LocalScreenTimeTableCreateCompanionBuilder =
+    LocalScreenTimeCompanion Function({
+      Value<int> id,
+      required String packageName,
+      required String appName,
+      required int usageMinutes,
+      required String category,
+      required DateTime date,
+      Value<bool> isSynced,
+      required DateTime createdAt,
+    });
+typedef $$LocalScreenTimeTableUpdateCompanionBuilder =
+    LocalScreenTimeCompanion Function({
+      Value<int> id,
+      Value<String> packageName,
+      Value<String> appName,
+      Value<int> usageMinutes,
+      Value<String> category,
+      Value<DateTime> date,
+      Value<bool> isSynced,
+      Value<DateTime> createdAt,
+    });
+
+class $$LocalScreenTimeTableFilterComposer
+    extends Composer<_$AppDatabase, $LocalScreenTimeTable> {
+  $$LocalScreenTimeTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get packageName => $composableBuilder(
+    column: $table.packageName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get appName => $composableBuilder(
+    column: $table.appName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get usageMinutes => $composableBuilder(
+    column: $table.usageMinutes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get category => $composableBuilder(
+    column: $table.category,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get isSynced => $composableBuilder(
+    column: $table.isSynced,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$LocalScreenTimeTableOrderingComposer
+    extends Composer<_$AppDatabase, $LocalScreenTimeTable> {
+  $$LocalScreenTimeTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get packageName => $composableBuilder(
+    column: $table.packageName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get appName => $composableBuilder(
+    column: $table.appName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get usageMinutes => $composableBuilder(
+    column: $table.usageMinutes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get category => $composableBuilder(
+    column: $table.category,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get isSynced => $composableBuilder(
+    column: $table.isSynced,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$LocalScreenTimeTableAnnotationComposer
+    extends Composer<_$AppDatabase, $LocalScreenTimeTable> {
+  $$LocalScreenTimeTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get packageName => $composableBuilder(
+    column: $table.packageName,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get appName =>
+      $composableBuilder(column: $table.appName, builder: (column) => column);
+
+  GeneratedColumn<int> get usageMinutes => $composableBuilder(
+    column: $table.usageMinutes,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get category =>
+      $composableBuilder(column: $table.category, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get date =>
+      $composableBuilder(column: $table.date, builder: (column) => column);
+
+  GeneratedColumn<bool> get isSynced =>
+      $composableBuilder(column: $table.isSynced, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$LocalScreenTimeTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $LocalScreenTimeTable,
+          LocalScreenTimeData,
+          $$LocalScreenTimeTableFilterComposer,
+          $$LocalScreenTimeTableOrderingComposer,
+          $$LocalScreenTimeTableAnnotationComposer,
+          $$LocalScreenTimeTableCreateCompanionBuilder,
+          $$LocalScreenTimeTableUpdateCompanionBuilder,
+          (
+            LocalScreenTimeData,
+            BaseReferences<
+              _$AppDatabase,
+              $LocalScreenTimeTable,
+              LocalScreenTimeData
+            >,
+          ),
+          LocalScreenTimeData,
+          PrefetchHooks Function()
+        > {
+  $$LocalScreenTimeTableTableManager(
+    _$AppDatabase db,
+    $LocalScreenTimeTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$LocalScreenTimeTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$LocalScreenTimeTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$LocalScreenTimeTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> packageName = const Value.absent(),
+                Value<String> appName = const Value.absent(),
+                Value<int> usageMinutes = const Value.absent(),
+                Value<String> category = const Value.absent(),
+                Value<DateTime> date = const Value.absent(),
+                Value<bool> isSynced = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+              }) => LocalScreenTimeCompanion(
+                id: id,
+                packageName: packageName,
+                appName: appName,
+                usageMinutes: usageMinutes,
+                category: category,
+                date: date,
+                isSynced: isSynced,
+                createdAt: createdAt,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String packageName,
+                required String appName,
+                required int usageMinutes,
+                required String category,
+                required DateTime date,
+                Value<bool> isSynced = const Value.absent(),
+                required DateTime createdAt,
+              }) => LocalScreenTimeCompanion.insert(
+                id: id,
+                packageName: packageName,
+                appName: appName,
+                usageMinutes: usageMinutes,
+                category: category,
+                date: date,
+                isSynced: isSynced,
+                createdAt: createdAt,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$LocalScreenTimeTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $LocalScreenTimeTable,
+      LocalScreenTimeData,
+      $$LocalScreenTimeTableFilterComposer,
+      $$LocalScreenTimeTableOrderingComposer,
+      $$LocalScreenTimeTableAnnotationComposer,
+      $$LocalScreenTimeTableCreateCompanionBuilder,
+      $$LocalScreenTimeTableUpdateCompanionBuilder,
+      (
+        LocalScreenTimeData,
+        BaseReferences<
+          _$AppDatabase,
+          $LocalScreenTimeTable,
+          LocalScreenTimeData
+        >,
+      ),
+      LocalScreenTimeData,
+      PrefetchHooks Function()
+    >;
+typedef $$LocalScreenTimeLimitsTableCreateCompanionBuilder =
+    LocalScreenTimeLimitsCompanion Function({
+      required String id,
+      Value<String?> packageName,
+      Value<String?> category,
+      required int dailyLimitMinutes,
+      Value<bool> isActive,
+      required DateTime createdAt,
+      Value<int> rowid,
+    });
+typedef $$LocalScreenTimeLimitsTableUpdateCompanionBuilder =
+    LocalScreenTimeLimitsCompanion Function({
+      Value<String> id,
+      Value<String?> packageName,
+      Value<String?> category,
+      Value<int> dailyLimitMinutes,
+      Value<bool> isActive,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+
+class $$LocalScreenTimeLimitsTableFilterComposer
+    extends Composer<_$AppDatabase, $LocalScreenTimeLimitsTable> {
+  $$LocalScreenTimeLimitsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get packageName => $composableBuilder(
+    column: $table.packageName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get category => $composableBuilder(
+    column: $table.category,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get dailyLimitMinutes => $composableBuilder(
+    column: $table.dailyLimitMinutes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get isActive => $composableBuilder(
+    column: $table.isActive,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$LocalScreenTimeLimitsTableOrderingComposer
+    extends Composer<_$AppDatabase, $LocalScreenTimeLimitsTable> {
+  $$LocalScreenTimeLimitsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get packageName => $composableBuilder(
+    column: $table.packageName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get category => $composableBuilder(
+    column: $table.category,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get dailyLimitMinutes => $composableBuilder(
+    column: $table.dailyLimitMinutes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get isActive => $composableBuilder(
+    column: $table.isActive,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$LocalScreenTimeLimitsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $LocalScreenTimeLimitsTable> {
+  $$LocalScreenTimeLimitsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get packageName => $composableBuilder(
+    column: $table.packageName,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get category =>
+      $composableBuilder(column: $table.category, builder: (column) => column);
+
+  GeneratedColumn<int> get dailyLimitMinutes => $composableBuilder(
+    column: $table.dailyLimitMinutes,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get isActive =>
+      $composableBuilder(column: $table.isActive, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$LocalScreenTimeLimitsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $LocalScreenTimeLimitsTable,
+          LocalScreenTimeLimitData,
+          $$LocalScreenTimeLimitsTableFilterComposer,
+          $$LocalScreenTimeLimitsTableOrderingComposer,
+          $$LocalScreenTimeLimitsTableAnnotationComposer,
+          $$LocalScreenTimeLimitsTableCreateCompanionBuilder,
+          $$LocalScreenTimeLimitsTableUpdateCompanionBuilder,
+          (
+            LocalScreenTimeLimitData,
+            BaseReferences<
+              _$AppDatabase,
+              $LocalScreenTimeLimitsTable,
+              LocalScreenTimeLimitData
+            >,
+          ),
+          LocalScreenTimeLimitData,
+          PrefetchHooks Function()
+        > {
+  $$LocalScreenTimeLimitsTableTableManager(
+    _$AppDatabase db,
+    $LocalScreenTimeLimitsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$LocalScreenTimeLimitsTableFilterComposer(
+                $db: db,
+                $table: table,
+              ),
+          createOrderingComposer: () =>
+              $$LocalScreenTimeLimitsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$LocalScreenTimeLimitsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String?> packageName = const Value.absent(),
+                Value<String?> category = const Value.absent(),
+                Value<int> dailyLimitMinutes = const Value.absent(),
+                Value<bool> isActive = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalScreenTimeLimitsCompanion(
+                id: id,
+                packageName: packageName,
+                category: category,
+                dailyLimitMinutes: dailyLimitMinutes,
+                isActive: isActive,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                Value<String?> packageName = const Value.absent(),
+                Value<String?> category = const Value.absent(),
+                required int dailyLimitMinutes,
+                Value<bool> isActive = const Value.absent(),
+                required DateTime createdAt,
+                Value<int> rowid = const Value.absent(),
+              }) => LocalScreenTimeLimitsCompanion.insert(
+                id: id,
+                packageName: packageName,
+                category: category,
+                dailyLimitMinutes: dailyLimitMinutes,
+                isActive: isActive,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$LocalScreenTimeLimitsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $LocalScreenTimeLimitsTable,
+      LocalScreenTimeLimitData,
+      $$LocalScreenTimeLimitsTableFilterComposer,
+      $$LocalScreenTimeLimitsTableOrderingComposer,
+      $$LocalScreenTimeLimitsTableAnnotationComposer,
+      $$LocalScreenTimeLimitsTableCreateCompanionBuilder,
+      $$LocalScreenTimeLimitsTableUpdateCompanionBuilder,
+      (
+        LocalScreenTimeLimitData,
+        BaseReferences<
+          _$AppDatabase,
+          $LocalScreenTimeLimitsTable,
+          LocalScreenTimeLimitData
+        >,
+      ),
+      LocalScreenTimeLimitData,
+      PrefetchHooks Function()
+    >;
 typedef $$SyncQueueTableCreateCompanionBuilder =
     SyncQueueCompanion Function({
       Value<int> id,
@@ -2761,6 +4224,10 @@ class $AppDatabaseManager {
       $$LocalHabitsTableTableManager(_db, _db.localHabits);
   $$LocalCompletionsTableTableManager get localCompletions =>
       $$LocalCompletionsTableTableManager(_db, _db.localCompletions);
+  $$LocalScreenTimeTableTableManager get localScreenTime =>
+      $$LocalScreenTimeTableTableManager(_db, _db.localScreenTime);
+  $$LocalScreenTimeLimitsTableTableManager get localScreenTimeLimits =>
+      $$LocalScreenTimeLimitsTableTableManager(_db, _db.localScreenTimeLimits);
   $$SyncQueueTableTableManager get syncQueue =>
       $$SyncQueueTableTableManager(_db, _db.syncQueue);
 }
