@@ -11,8 +11,14 @@ class FocusRemoteSource {
   Future<List<FocusSessionModel>> getSessions() async {
     try {
       final res = await _dio.get(ApiEndpoints.focusSessions);
-      final data = (res.data as Map<String, dynamic>)['data'] as List;
-      return data
+      final raw = (res.data as Map<String, dynamic>)['data'];
+      // Backend may return list directly or wrapped: {sessions: [...]}
+      final list = raw is List
+          ? raw
+          : raw is Map
+              ? (raw['sessions'] ?? raw['items'] ?? raw['data'] ?? []) as List
+              : <dynamic>[];
+      return list
           .map((j) => FocusSessionModel.fromJson(j as Map<String, dynamic>))
           .toList();
     } on DioException catch (e) {

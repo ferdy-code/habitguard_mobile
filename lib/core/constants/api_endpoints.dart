@@ -33,4 +33,8 @@ class ApiEndpoints {
 
   // Daily Summaries
   static const String dailySummaries = '/daily-summaries';
+  static const String todaySummary = '/daily-summaries/today';
+
+  // Correlation
+  static const String screenTimeCorrelation = '/screen-time/correlation';
 }

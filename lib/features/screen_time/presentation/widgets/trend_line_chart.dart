@@ -34,7 +34,7 @@ class TrendLineChart extends StatelessWidget {
           gridData: FlGridData(
             show: true,
             drawVerticalLine: false,
-            horizontalInterval: maxY / 4,
+            horizontalInterval: (maxY / 4).clamp(1.0, double.infinity),
             getDrawingHorizontalLine: (_) => const FlLine(
               color: AppColors.grey200,
               strokeWidth: 1,
